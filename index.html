@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Dia das Mães 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4ef 50%, #ffd6e8 100%);
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Corações flutuantes ── */
+  .coracoes-bg {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .cf {
+    position: absolute; opacity: .13;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0;   }
+    10%  { opacity: .13; }
+    90%  { opacity: .13; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0;   }
+  }
+
+  /* ── Layout ── */
+  .wrap {
+    max-width: 700px; margin: 0 auto;
+    padding: 0 20px 60px; position: relative; z-index: 1;
+  }
+
+  /* ── Hero ── */
+  .hero { text-align: center; padding: 50px 20px 36px; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,.7);
+    border: 1px solid #f0a0c0; border-radius: 50px;
+    padding: 6px 20px; font-size: 12px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: #c0607a; margin-bottom: 20px;
+  }
+  .htitulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    color: #7a2040; line-height: 1.15; margin-bottom: 12px;
+  }
+  .htitulo em { font-style: italic; color: #c0607a; }
+  .hsub {
+    font-size: 15px; font-weight: 300;
+    color: #a05070; letter-spacing: 1px; margin-bottom: 28px;
+  }
+  .hdeco { font-size: 28px; letter-spacing: 8px; }
+  .hdeco span { animation: pulse 1.5s ease-in-out infinite; display: inline-block; }
+  .hdeco span:nth-child(2) { animation-delay: .3s; }
+  .hdeco span:nth-child(3) { animation-delay: .6s; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
+  /* ── Foto destaque ── */
+  .foto-dest { display: flex; justify-content: center; margin-bottom: 36px; }
+  .foto-frame {
+    width: 220px; height: 220px; border-radius: 50%;
+    border: 5px solid white; outline: 3px solid #f0a0c0;
+    overflow: hidden; box-shadow: 0 8px 32px rgba(192,96,122,.25);
+    position: relative; cursor: pointer;
+  }
+  .foto-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .cbadge {
+    position: absolute; bottom: -2px; right: 10px;
+    background: white; border-radius: 50%;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+
+  /* ── Mensagem ── */
+  .msg-card {
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(240,160,192,.4);
+    border-radius: 24px; padding: 36px 32px;
+    text-align: center; margin-bottom: 36px;
+    box-shadow: 0 4px 24px rgba(192,96,122,.1);
+  }
+  .msg-para {
+    font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase; color: #c0607a; margin-bottom: 8px;
+  }
+  .msg-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; color: #7a2040; margin-bottom: 20px;
+  }
+  .divisor { display: flex; align-items: center; gap: 12px; margin: 0 auto 20px; max-width: 260px; }
+  .dlinha { flex: 1; height: 1px; background: linear-gradient(to right, transparent, #f0a0c0, transparent); }
+  .msg-texto {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 16px; color: #7a4060; line-height: 1.9; margin-bottom: 20px;
+  }
+  .msg-ass { font-size: 13px; font-weight: 300; color: #c0607a; letter-spacing: 1px; }
+
+  /* ── Galeria ── */
+  .gal-titulo { text-align: center; margin-bottom: 24px; }
+  .gal-titulo h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: #7a2040; margin-bottom: 6px; }
+  .gal-titulo p { font-size: 13px; color: #a05070; font-weight: 300; letter-spacing: 1px; }
+
+  .upload-area {
+    background: rgba(255,255,255,.6);
+    border: 2px dashed #f0a0c0; border-radius: 16px;
+    padding: 24px; text-align: center; margin-bottom: 24px; cursor: pointer;
+    transition: background .2s;
+  }
+  .upload-area:hover { background: rgba(255,255,255,.85); }
+  .upload-area p { color: #c0607a; font-size: 14px; margin-bottom: 6px; }
+  .upload-area span { font-size: 12px; color: #a05070; }
+  .btn-upload {
+    background: #c0607a; color: white; border: none;
+    padding: 10px 24px; border-radius: 50px;
+    font-size: 13px; cursor: pointer;
+    font-family: 'Lato', sans-serif; margin-top: 10px;
+  }
+
+  .galeria {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 40px;
+  }
+  .gitem {
+    aspect-ratio: 1; border-radius: 16px; overflow: hidden;
+    border: 3px solid white; box-shadow: 0 4px 16px rgba(192,96,122,.15);
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+  }
+  .gitem:hover { transform: scale(1.04); box-shadow: 0 8px 28px rgba(192,96,122,.3); }
+  .gitem img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(80,10,30,.88); z-index: 100;
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .lightbox.ativo { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 85vh;
+    border-radius: 16px; border: 4px solid rgba(255,255,255,.3); object-fit: contain;
+  }
+  .lb-fechar {
+    position: fixed; top: 20px; right: 24px;
+    color: white; font-size: 40px; cursor: pointer; opacity: .8; line-height: 1;
+  }
+
+  /* ── Rodapé ── */
+  .rodape { text-align: center; padding-top: 10px; }
+  .rodape-c { font-size: 24px; letter-spacing: 6px; margin-bottom: 10px; opacity: .7; }
+  .rodape-t { font-size: 12px; color: #a05070; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
+</style>
+</head>
+<body>
+
+<div class="coracoes-bg" id="cbg"></div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge">♡ 11 de maio ♡</div>
+    <h1 class="htitulo">Feliz <em>Dia das<br>Mães</em></h1>
+    <p class="hsub">Para a mulher mais especial da minha vida</p>
+    <div class="hdeco">
+      <span>💕</span><span>🌸</span><span>💕</span>
+    </div>
+  </div>
+
+  <!-- FOTO DESTAQUE — clique para trocar -->
+  <div class="foto-dest">
+    <div class="foto-frame" onclick="document.getElementById('inp-destaque').click()" title="Clique para adicionar foto">
+      <img id="foto-principal" src="" alt="Foto da mamãe">
+      <div class="cbadge">💖</div>
+    </div>
+    <input type="file" id="inp-destaque" accept="image/*" style="display:none">
+  </div>
+
+  <!-- MENSAGEM — edite o texto aqui diretamente -->
+  <div class="msg-card">
+    <p class="msg-para">Uma mensagem especial</p>
+    <div class="msg-nome">Para a minha Mãe</div>
+    <div class="divisor">
+      <div class="dlinha"></div>
+      <span>💗</span>
+      <div class="dlinha"></div>
+    </div>
+    <p class="msg-texto">
+      Obrigado por cada abraço, cada conselho<br>
+      e cada olhar cheio de amor incondicional.<br><br>
+      Você é a razão de tudo que sou —<br>
+      e o melhor presente que a vida me deu.<br><br>
+      Hoje e sempre, com todo o meu amor.
+    </p>
+    <p class="msg-ass">— Com amor eterno ♡</p>
+  </div>
+
+  <!-- GALERIA -->
+  <div class="gal-titulo">
+    <h2>Momentos especiais 📸</h2>
+    <p>Cada foto, uma memória cheia de amor</p>
+  </div>
+
+  <div class="upload-area" onclick="document.getElementById('inp-galeria').click()">
+    <p>💕 Adicione as fotos da mamãe</p>
+    <span>Selecione várias fotos de uma vez</span><br>
+    <button class="btn-upload">Escolher fotos</button>
+    <input type="file" id="inp-galeria" accept="image/*" multiple style="display:none">
+  </div>
+
+  <div class="galeria" id="galeria"></div>
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    <div class="rodape-c">💕 💖 💕</div>
+    <p class="rodape-t">Feito com muito amor ♡</p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="fecharFoto()">
+  <span class="lb-fechar" onclick="fecharFoto()">×</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  const imgs = [];
+
+  // Placeholder inicial
+  const cv = document.createElement('canvas');
+  cv.width = cv.height = 400;
+  const cx = cv.getContext('2d');
+  const grd = cx.createRadialGradient(200,200,10,200,200,200);
+  grd.addColorStop(0,'#ffd6e8'); grd.addColorStop(1,'#f0a0c0');
+  cx.fillStyle = grd;
+  cx.beginPath(); cx.arc(200,200,200,0,Math.PI*2); cx.fill();
+  cx.font='80px serif'; cx.textAlign='center';
+  cx.fillText('💕',200,230);
+  document.getElementById('foto-principal').src = cv.toDataURL();
+
+  // Foto destaque
+  document.getElementById('inp-destaque').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const r = new FileReader();
+    r.onload = ev => document.getElementById('foto-principal').src = ev.target.result;
+    r.readAsDataURL(file);
+  });
+
+  // Fotos galeria
+  document.getElementById('inp-galeria').addEventListener('change', function(e) {
+    Array.from(e.target.files).forEach(file => {
+      const r = new FileReader();
+      r.onload = ev => {
+        imgs.push(ev.target.result);
+        if (imgs.length === 1) document.getElementById('foto-principal').src = ev.target.result;
+        renderGaleria();
+      };
+      r.readAsDataURL(file);
+    });
+  });
+
+  function renderGaleria() {
+    const g = document.getElementById('galeria');
+    g.innerHTML = '';
+    imgs.forEach((src, i) => {
+      const d = document.createElement('div');
+      d.className = 'gitem';
+      d.onclick = () => abrirFoto(i);
+      const img = document.createElement('img');
+      img.src = src;
+      d.appendChild(img);
+      g.appendChild(d);
+    });
+  }
+
+  function abrirFoto(i) {
+    document.getElementById('lb-img').src = imgs[i];
+    document.getElementById('lb').classList.add('ativo');
+  }
+  function fecharFoto() {
+    document.getElementById('lb').classList.remove('ativo');
+  }
+
+  // Corações flutuantes
+  const bg = document.getElementById('cbg');
+  const em = ['💕','💗','🌸','💖','🌷','💝','🩷'];
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'cf';
+    el.textContent = em[Math.floor(Math.random() * em.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (8 + Math.random() * 12) + 's';
+    el.style.animationDelay = (Math.random() * 10) + 's';
+    el.style.fontSize = (14 + Math.random() * 18) + 'px';
+    bg.appendChild(el);
+  }
+</script>
+</body>
+</html>
