@@ -4,308 +4,441 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz Dia das Mães 💕</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --rose: #c4607a;
+  --rose-light: #f0a0b8;
+  --rose-pale: #fde8f0;
+  --rose-deep: #7a2040;
+  --cream: #fff8f5;
+  --text: #4a2030;
+  --text-soft: #9a6070;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4ef 50%, #ffd6e8 100%);
-    min-height: 100vh;
-    font-family: 'Lato', sans-serif;
-    overflow-x: hidden;
-  }
+body {
+  background: var(--cream);
+  font-family: 'Jost', sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  /* ── Corações flutuantes ── */
-  .coracoes-bg {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; z-index: 0; overflow: hidden;
-  }
-  .cf {
-    position: absolute; opacity: .13;
-    animation: floatUp linear infinite;
-  }
-  @keyframes floatUp {
-    0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0;   }
-    10%  { opacity: .13; }
-    90%  { opacity: .13; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0;   }
-  }
+/* ─── Background texture ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(240,160,184,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, rgba(196,96,122,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 40% at 50% 50%, rgba(253,232,240,0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-  /* ── Layout ── */
-  .wrap {
-    max-width: 700px; margin: 0 auto;
-    padding: 0 20px 60px; position: relative; z-index: 1;
-  }
+/* ─── Floating hearts ─── */
+.hearts-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.h { position: absolute; animation: rise linear infinite; opacity: 0; }
+@keyframes rise {
+  0%   { transform: translateY(105vh) scale(0.5) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.18; }
+  95%  { opacity: 0.18; }
+  100% { transform: translateY(-5vh) scale(1.2) rotate(40deg); opacity: 0; }
+}
 
-  /* ── Hero ── */
-  .hero { text-align: center; padding: 50px 20px 36px; }
-  .badge {
-    display: inline-block;
-    background: rgba(255,255,255,.7);
-    border: 1px solid #f0a0c0; border-radius: 50px;
-    padding: 6px 20px; font-size: 12px;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: #c0607a; margin-bottom: 20px;
-  }
-  .htitulo {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 6vw, 52px);
-    color: #7a2040; line-height: 1.15; margin-bottom: 12px;
-  }
-  .htitulo em { font-style: italic; color: #c0607a; }
-  .hsub {
-    font-size: 15px; font-weight: 300;
-    color: #a05070; letter-spacing: 1px; margin-bottom: 28px;
-  }
-  .hdeco { font-size: 28px; letter-spacing: 8px; }
-  .hdeco span { animation: pulse 1.5s ease-in-out infinite; display: inline-block; }
-  .hdeco span:nth-child(2) { animation-delay: .3s; }
-  .hdeco span:nth-child(3) { animation-delay: .6s; }
-  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+/* ─── Main layout ─── */
+.page { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
 
-  /* ── Foto destaque ── */
-  .foto-dest { display: flex; justify-content: center; margin-bottom: 36px; }
-  .foto-frame {
-    width: 220px; height: 220px; border-radius: 50%;
-    border: 5px solid white; outline: 3px solid #f0a0c0;
-    overflow: hidden; box-shadow: 0 8px 32px rgba(192,96,122,.25);
-    position: relative; cursor: pointer;
-  }
-  .foto-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-  .cbadge {
-    position: absolute; bottom: -2px; right: 10px;
-    background: white; border-radius: 50%;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  }
+/* ─── Header ─── */
+header {
+  text-align: center;
+  padding: 64px 20px 48px;
+  position: relative;
+}
+.header-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'Jost', sans-serif; font-weight: 200;
+  font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--rose); margin-bottom: 24px;
+}
+.header-eyebrow::before, .header-eyebrow::after {
+  content: ''; display: block; width: 40px; height: 0.5px; background: var(--rose-light);
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 9vw, 82px);
+  font-weight: 300; line-height: 1.05;
+  color: var(--rose-deep); margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+h1 em { font-style: italic; color: var(--rose); }
+.header-sub {
+  font-weight: 200; font-size: 15px;
+  color: var(--text-soft); letter-spacing: 2px;
+}
+.petal-row { font-size: 22px; letter-spacing: 10px; margin: 28px 0 0; opacity: .7; }
 
-  /* ── Mensagem ── */
-  .msg-card {
-    background: rgba(255,255,255,.85);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(240,160,192,.4);
-    border-radius: 24px; padding: 36px 32px;
-    text-align: center; margin-bottom: 36px;
-    box-shadow: 0 4px 24px rgba(192,96,122,.1);
-  }
-  .msg-para {
-    font-size: 12px; letter-spacing: 3px;
-    text-transform: uppercase; color: #c0607a; margin-bottom: 8px;
-  }
-  .msg-nome {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px; color: #7a2040; margin-bottom: 20px;
-  }
-  .divisor { display: flex; align-items: center; gap: 12px; margin: 0 auto 20px; max-width: 260px; }
-  .dlinha { flex: 1; height: 1px; background: linear-gradient(to right, transparent, #f0a0c0, transparent); }
-  .msg-texto {
-    font-family: 'Playfair Display', serif; font-style: italic;
-    font-size: 16px; color: #7a4060; line-height: 1.9; margin-bottom: 20px;
-  }
-  .msg-ass { font-size: 13px; font-weight: 300; color: #c0607a; letter-spacing: 1px; }
+/* ─── Spotlight photo ─── */
+.spotlight { display: flex; justify-content: center; margin: 0 0 48px; }
+.spotlight-ring {
+  position: relative;
+  width: 240px; height: 240px;
+}
+.spotlight-ring::before {
+  content: '';
+  position: absolute; inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--rose-light), var(--rose), var(--rose-pale), var(--rose-light));
+  animation: spin 8s linear infinite;
+  opacity: .6;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spotlight-ring::after {
+  content: '';
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  background: var(--cream);
+}
+.spotlight-img {
+  position: relative; z-index: 1;
+  width: 240px; height: 240px; border-radius: 50%;
+  overflow: hidden; cursor: pointer;
+  border: 4px solid white;
+  box-shadow: 0 16px 48px rgba(122,32,64,.2);
+  transition: transform .3s;
+}
+.spotlight-img:hover { transform: scale(1.03); }
+.spotlight-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.spotlight-heart {
+  position: absolute; bottom: 4px; right: 8px; z-index: 2;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: white; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; box-shadow: 0 4px 12px rgba(122,32,64,.2);
+  animation: heartbeat 2s ease-in-out infinite;
+}
+@keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
 
-  /* ── Galeria ── */
-  .gal-titulo { text-align: center; margin-bottom: 24px; }
-  .gal-titulo h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: #7a2040; margin-bottom: 6px; }
-  .gal-titulo p { font-size: 13px; color: #a05070; font-weight: 300; letter-spacing: 1px; }
+/* ─── Message card ─── */
+.msg {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(240,160,184,.35);
+  border-radius: 28px;
+  padding: 44px 40px;
+  text-align: center;
+  margin-bottom: 48px;
+  box-shadow: 0 8px 40px rgba(196,96,122,.08), inset 0 1px 0 rgba(255,255,255,.9);
+  position: relative; overflow: hidden;
+}
+.msg::before {
+  content: '♡';
+  position: absolute; top: -20px; right: 24px;
+  font-size: 120px; color: var(--rose-pale);
+  font-family: serif; line-height: 1; pointer-events: none;
+}
+.msg-label {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--rose-light); margin-bottom: 10px; font-weight: 400;
+}
+.msg-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px; font-weight: 400;
+  color: var(--rose-deep); margin-bottom: 24px;
+}
+.msg-divider {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 220px; margin: 0 auto 28px;
+}
+.msg-divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--rose-light), transparent); }
+.msg-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-style: italic; font-weight: 300;
+  color: var(--text); line-height: 2; margin-bottom: 28px;
+}
+.msg-sign { font-size: 13px; font-weight: 200; color: var(--rose); letter-spacing: 2px; }
 
-  .upload-area {
-    background: rgba(255,255,255,.6);
-    border: 2px dashed #f0a0c0; border-radius: 16px;
-    padding: 24px; text-align: center; margin-bottom: 24px; cursor: pointer;
-    transition: background .2s;
-  }
-  .upload-area:hover { background: rgba(255,255,255,.85); }
-  .upload-area p { color: #c0607a; font-size: 14px; margin-bottom: 6px; }
-  .upload-area span { font-size: 12px; color: #a05070; }
-  .btn-upload {
-    background: #c0607a; color: white; border: none;
-    padding: 10px 24px; border-radius: 50px;
-    font-size: 13px; cursor: pointer;
-    font-family: 'Lato', sans-serif; margin-top: 10px;
-  }
+/* ─── Gallery section ─── */
+.section-title {
+  text-align: center; margin-bottom: 28px;
+}
+.section-title h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 400;
+  color: var(--rose-deep); margin-bottom: 6px;
+}
+.section-title p { font-size: 13px; font-weight: 200; color: var(--text-soft); letter-spacing: 1px; }
 
-  .galeria {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; margin-bottom: 40px;
-  }
-  .gitem {
-    aspect-ratio: 1; border-radius: 16px; overflow: hidden;
-    border: 3px solid white; box-shadow: 0 4px 16px rgba(192,96,122,.15);
-    cursor: pointer; transition: transform .2s, box-shadow .2s;
-  }
-  .gitem:hover { transform: scale(1.04); box-shadow: 0 8px 28px rgba(192,96,122,.3); }
-  .gitem img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+/* ─── Drop zone ─── */
+.dropzone {
+  border: 1.5px dashed var(--rose-light);
+  border-radius: 20px;
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .25s;
+  margin-bottom: 28px;
+  background: rgba(253,232,240,.3);
+  position: relative;
+}
+.dropzone.drag-over {
+  border-color: var(--rose);
+  background: rgba(253,232,240,.7);
+  transform: scale(1.01);
+}
+.dropzone-icon { font-size: 36px; margin-bottom: 12px; }
+.dropzone h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--rose-deep); margin-bottom: 6px; }
+.dropzone p { font-size: 13px; font-weight: 200; color: var(--text-soft); margin-bottom: 16px; }
+.btn-add {
+  display: inline-block;
+  background: var(--rose); color: white;
+  border: none; border-radius: 50px;
+  padding: 11px 28px; font-size: 13px;
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  letter-spacing: 1px; cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.btn-add:hover { background: var(--rose-deep); transform: translateY(-1px); }
 
-  /* ── Lightbox ── */
-  .lightbox {
-    display: none; position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(80,10,30,.88); z-index: 100;
-    align-items: center; justify-content: center; padding: 20px;
-  }
-  .lightbox.ativo { display: flex; }
-  .lightbox img {
-    max-width: 90vw; max-height: 85vh;
-    border-radius: 16px; border: 4px solid rgba(255,255,255,.3); object-fit: contain;
-  }
-  .lb-fechar {
-    position: fixed; top: 20px; right: 24px;
-    color: white; font-size: 40px; cursor: pointer; opacity: .8; line-height: 1;
-  }
+/* ─── Photo grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.grid-item {
+  aspect-ratio: 1; border-radius: 18px; overflow: hidden;
+  border: 3px solid white; position: relative;
+  box-shadow: 0 4px 20px rgba(122,32,64,.12);
+  cursor: pointer; transition: transform .25s, box-shadow .25s;
+}
+.grid-item:first-child { grid-column: span 2; grid-row: span 2; border-radius: 22px; }
+.grid-item:hover { transform: scale(1.03); box-shadow: 0 12px 36px rgba(122,32,64,.22); }
+.grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.grid-item .remove {
+  position: absolute; top: 8px; right: 8px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,.9); border: none;
+  font-size: 14px; cursor: pointer; display: none;
+  align-items: center; justify-content: center;
+  color: var(--rose); box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  transition: background .2s;
+}
+.grid-item:hover .remove { display: flex; }
+.grid-item .remove:hover { background: white; }
 
-  /* ── Rodapé ── */
-  .rodape { text-align: center; padding-top: 10px; }
-  .rodape-c { font-size: 24px; letter-spacing: 6px; margin-bottom: 10px; opacity: .7; }
-  .rodape-t { font-size: 12px; color: #a05070; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
+/* ─── Lightbox ─── */
+.lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(50,5,20,.92); z-index: 1000;
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+.lightbox.on { display: flex; }
+.lightbox img {
+  max-width: 88vw; max-height: 88vh;
+  border-radius: 16px; border: 3px solid rgba(255,255,255,.15);
+  object-fit: contain;
+}
+.lb-close {
+  position: fixed; top: 20px; right: 24px;
+  color: white; font-size: 38px; cursor: pointer;
+  opacity: .7; line-height: 1; transition: opacity .2s;
+}
+.lb-close:hover { opacity: 1; }
+.lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  color: white; font-size: 32px; cursor: pointer;
+  opacity: .5; transition: opacity .2s; user-select: none;
+  padding: 20px;
+}
+.lb-nav:hover { opacity: 1; }
+.lb-prev { left: 8px; }
+.lb-next { right: 8px; }
+
+/* ─── Footer ─── */
+footer {
+  text-align: center; padding-top: 8px;
+}
+.footer-hearts { font-size: 20px; letter-spacing: 8px; opacity: .5; margin-bottom: 12px; }
+.footer-text { font-size: 11px; font-weight: 200; color: var(--text-soft); letter-spacing: 3px; text-transform: uppercase; }
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid-item:first-child { grid-column: span 2; }
+  .msg { padding: 32px 24px; }
+}
 </style>
 </head>
 <body>
 
-<div class="coracoes-bg" id="cbg"></div>
+<div class="hearts-bg" id="hearts"></div>
 
-<div class="wrap">
+<div class="page">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="badge">♡ 11 de maio ♡</div>
-    <h1 class="htitulo">Feliz <em>Dia das<br>Mães</em></h1>
-    <p class="hsub">Para a mulher mais especial da minha vida</p>
-    <div class="hdeco">
-      <span>💕</span><span>🌸</span><span>💕</span>
+  <!-- HEADER -->
+  <header>
+    <div class="header-eyebrow">10 de maio de 2025</div>
+    <h1>Feliz <em>Dia<br>das Mães</em></h1>
+    <p class="header-sub">Para a mulher mais especial da minha vida</p>
+    <div class="petal-row">🌸 💕 🌸</div>
+  </header>
+
+  <!-- SPOTLIGHT -->
+  <div class="spotlight">
+    <div class="spotlight-ring">
+      <div class="spotlight-img" onclick="document.getElementById('inp-spot').click()" title="Clique para adicionar foto principal">
+        <img id="spot-img" src="" alt="Foto principal">
+      </div>
+      <div class="spotlight-heart">💖</div>
     </div>
+    <input type="file" id="inp-spot" accept="image/*" style="display:none">
   </div>
 
-  <!-- FOTO DESTAQUE — clique para trocar -->
-  <div class="foto-dest">
-    <div class="foto-frame" onclick="document.getElementById('inp-destaque').click()" title="Clique para adicionar foto">
-      <img id="foto-principal" src="" alt="Foto da mamãe">
-      <div class="cbadge">💖</div>
+  <!-- MESSAGE -->
+  <div class="msg">
+    <p class="msg-label">Uma mensagem especial</p>
+    <div class="msg-name">Para a minha Mãe</div>
+    <div class="msg-divider">
+      <div class="msg-divider-line"></div>
+      <span style="color:var(--rose-light);font-size:14px;">♡</span>
+      <div class="msg-divider-line"></div>
     </div>
-    <input type="file" id="inp-destaque" accept="image/*" style="display:none">
-  </div>
-
-  <!-- MENSAGEM — edite o texto aqui diretamente -->
-  <div class="msg-card">
-    <p class="msg-para">Uma mensagem especial</p>
-    <div class="msg-nome">Para a minha Mãe</div>
-    <div class="divisor">
-      <div class="dlinha"></div>
-      <span>💗</span>
-      <div class="dlinha"></div>
-    </div>
-    <p class="msg-texto">
+    <p class="msg-body">
       Obrigado por cada abraço, cada conselho<br>
       e cada olhar cheio de amor incondicional.<br><br>
       Você é a razão de tudo que sou —<br>
       e o melhor presente que a vida me deu.<br><br>
       Hoje e sempre, com todo o meu amor.
+      Eu sempre te amei por tudo oque fez para min
     </p>
-    <p class="msg-ass">— Com amor eterno ♡</p>
+    <p class="msg-sign">— Com amor eterno &nbsp;♡</p>
   </div>
 
-  <!-- GALERIA -->
-  <div class="gal-titulo">
-    <h2>Momentos especiais 📸</h2>
-    <p>Cada foto, uma memória cheia de amor</p>
+  <!-- GALLERY -->
+  <div class="section-title">
+    <h2>Momentos especiais</h2>
+    <p>Cole aqui as fotos mais lindas da mamãe 📸</p>
   </div>
 
-  <div class="upload-area" onclick="document.getElementById('inp-galeria').click()">
-    <p>💕 Adicione as fotos da mamãe</p>
-    <span>Selecione várias fotos de uma vez</span><br>
-    <button class="btn-upload">Escolher fotos</button>
-    <input type="file" id="inp-galeria" accept="image/*" multiple style="display:none">
+  <div class="dropzone" id="dropzone">
+    <div class="dropzone-icon">💐</div>
+    <h3>Arraste as fotos aqui</h3>
+    <p>ou clique para selecionar do seu dispositivo</p>
+    <button class="btn-add" onclick="event.stopPropagation(); document.getElementById('inp-gal').click()">
+      Escolher fotos
+    </button>
+    <input type="file" id="inp-gal" accept="image/*" multiple style="display:none">
   </div>
 
-  <div class="galeria" id="galeria"></div>
+  <div class="grid" id="grid"></div>
 
-  <!-- RODAPÉ -->
-  <div class="rodape">
-    <div class="rodape-c">💕 💖 💕</div>
-    <p class="rodape-t">Feito com muito amor ♡</p>
-  </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-hearts">💕 💖 💕</div>
+    <p class="footer-text">Feito com muito amor ♡</p>
+  </footer>
 </div>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lb" onclick="fecharFoto()">
-  <span class="lb-fechar" onclick="fecharFoto()">×</span>
+<div class="lightbox" id="lb">
+  <span class="lb-close" onclick="closeLb()">×</span>
+  <span class="lb-nav lb-prev" onclick="navLb(-1)">&#8249;</span>
   <img id="lb-img" src="" alt="">
+  <span class="lb-nav lb-next" onclick="navLb(1)">&#8250;</span>
 </div>
 
 <script>
-  const imgs = [];
+// ─── Floating hearts ───
+const hbg = document.getElementById('hearts');
+const hEmojis = ['💕','💗','🌸','💖','🌷','💝','🩷','✿','❀'];
+for (let i = 0; i < 20; i++) {
+  const el = document.createElement('div');
+  el.className = 'h';
+  el.textContent = hEmojis[Math.floor(Math.random() * hEmojis.length)];
+  el.style.cssText = `
+    left:${Math.random()*100}vw;
+    font-size:${12+Math.random()*16}px;
+    animation-duration:${10+Math.random()*14}s;
+    animation-delay:${Math.random()*12}s;
+  `;
+  hbg.appendChild(el);
+}
 
-  // Placeholder inicial
-  const cv = document.createElement('canvas');
-  cv.width = cv.height = 400;
-  const cx = cv.getContext('2d');
-  const grd = cx.createRadialGradient(200,200,10,200,200,200);
-  grd.addColorStop(0,'#ffd6e8'); grd.addColorStop(1,'#f0a0c0');
-  cx.fillStyle = grd;
-  cx.beginPath(); cx.arc(200,200,200,0,Math.PI*2); cx.fill();
-  cx.font='80px serif'; cx.textAlign='center';
-  cx.fillText('💕',200,230);
-  document.getElementById('foto-principal').src = cv.toDataURL();
+// ─── Placeholder ───
+const cv = document.createElement('canvas'); cv.width = cv.height = 480;
+const cx = cv.getContext('2d');
+const gr = cx.createRadialGradient(240,240,20,240,240,240);
+gr.addColorStop(0,'#fde8f0'); gr.addColorStop(1,'#f0a0b8');
+cx.fillStyle = gr; cx.beginPath(); cx.arc(240,240,240,0,Math.PI*2); cx.fill();
+cx.font = '100px serif'; cx.textAlign = 'center';
+cx.fillText('💕', 240, 280);
+document.getElementById('spot-img').src = cv.toDataURL();
 
-  // Foto destaque
-  document.getElementById('inp-destaque').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+// ─── Spotlight input ───
+document.getElementById('inp-spot').addEventListener('change', function(e) {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = ev => document.getElementById('spot-img').src = ev.target.result;
+  r.readAsDataURL(f);
+});
+
+// ─── Gallery ───
+const imgs = [];
+let lbIdx = 0;
+
+function addFiles(files) {
+  Array.from(files).forEach(f => {
+    if (!f.type.startsWith('image/')) return;
     const r = new FileReader();
-    r.onload = ev => document.getElementById('foto-principal').src = ev.target.result;
-    r.readAsDataURL(file);
+    r.onload = ev => {
+      imgs.push(ev.target.result);
+      if (imgs.length === 1) document.getElementById('spot-img').src = ev.target.result;
+      renderGrid();
+    };
+    r.readAsDataURL(f);
   });
+}
 
-  // Fotos galeria
-  document.getElementById('inp-galeria').addEventListener('change', function(e) {
-    Array.from(e.target.files).forEach(file => {
-      const r = new FileReader();
-      r.onload = ev => {
-        imgs.push(ev.target.result);
-        if (imgs.length === 1) document.getElementById('foto-principal').src = ev.target.result;
-        renderGaleria();
-      };
-      r.readAsDataURL(file);
-    });
+document.getElementById('inp-gal').addEventListener('change', e => addFiles(e.target.files));
+
+// Drag & drop
+const dz = document.getElementById('dropzone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('drag-over');
+  addFiles(e.dataTransfer.files);
+});
+dz.addEventListener('click', () => document.getElementById('inp-gal').click());
+
+function renderGrid() {
+  const g = document.getElementById('grid');
+  g.innerHTML = '';
+  if (imgs.length === 0) return;
+  imgs.forEach((src, i) => {
+    const d = document.createElement('div'); d.className = 'grid-item';
+    d.onclick = () => openLb(i);
+    const img = document.createElement('img'); img.src = src; img.alt = '';
+    const btn = document.createElement('button'); btn.className = 'remove';
+    btn.innerHTML = '×'; btn.title = 'Remover';
+    btn.onclick = ev => { ev.stopPropagation(); imgs.splice(i,1); renderGrid(); };
+    d.append(img, btn); g.appendChild(d);
   });
+}
 
-  function renderGaleria() {
-    const g = document.getElementById('galeria');
-    g.innerHTML = '';
-    imgs.forEach((src, i) => {
-      const d = document.createElement('div');
-      d.className = 'gitem';
-      d.onclick = () => abrirFoto(i);
-      const img = document.createElement('img');
-      img.src = src;
-      d.appendChild(img);
-      g.appendChild(d);
-    });
-  }
-
-  function abrirFoto(i) {
-    document.getElementById('lb-img').src = imgs[i];
-    document.getElementById('lb').classList.add('ativo');
-  }
-  function fecharFoto() {
-    document.getElementById('lb').classList.remove('ativo');
-  }
-
-  // Corações flutuantes
-  const bg = document.getElementById('cbg');
-  const em = ['💕','💗','🌸','💖','🌷','💝','🩷'];
-  for (let i = 0; i < 18; i++) {
-    const el = document.createElement('div');
-    el.className = 'cf';
-    el.textContent = em[Math.floor(Math.random() * em.length)];
-    el.style.left = Math.random() * 100 + 'vw';
-    el.style.animationDuration = (8 + Math.random() * 12) + 's';
-    el.style.animationDelay = (Math.random() * 10) + 's';
-    el.style.fontSize = (14 + Math.random() * 18) + 'px';
-    bg.appendChild(el);
-  }
+// ─── Lightbox ───
+function openLb(i) { lbIdx = i; document.getElementById('lb-img').src = imgs[i]; document.getElementById('lb').classList.add('on'); }
+function closeLb() { document.getElementById('lb').classList.remove('on'); }
+function navLb(dir) { lbIdx = (lbIdx + dir + imgs.length) % imgs.length; document.getElementById('lb-img').src = imgs[lbIdx]; }
+document.getElementById('lb').addEventListener('click', function(e) { if (e.target === this) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lb').classList.contains('on')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') navLb(-1);
+  if (e.key === 'ArrowRight') navLb(1);
+});
 </script>
 </body>
 </html>
